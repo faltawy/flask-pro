@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta name="keywords" content="random ayah quran random">
+        <meta name="description" content="Get Random ayah">
+        <title>Random Aya</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='Random-Aya.css')}}" media="screen">
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <meta property="og:title" content="Random Aya">
+    </head>
+
+    <body>
+        <main class="container">
+            <div class="card" x-data="{ aya: {} }" x-init="aya = await (await fetch('/api')).json()">
+                <div class="basmalah">
+                    <img src="{{ url_for('static',filename='basmalah.svg' ) }}">
+                </div>
+                <div class="info">
+                    <p x-text="aya.data.surah.name" class="surah__name">
+                    </p>
+                </div>
+                <div class="ayah">
+                    <p class="ayah__ayah" x-text="aya.data.text"></p>
+                </div>
+
+                <div class="controls">
+                    <button class="btn new" x-on:click="aya = await (await fetch('/api')).json()">⟳</button>
+                </div>
+            </div>
+        </main>
+    </body>
+
+</html>
