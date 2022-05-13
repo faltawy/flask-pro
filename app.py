@@ -12,6 +12,3 @@ def home():
 def api():
     aya = AyA.get_aya()
     return jsonify(**aya)
-
-if __name__ == '__main__':
-    app.run(debug=True)
